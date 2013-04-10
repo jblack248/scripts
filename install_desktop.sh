@@ -179,7 +179,7 @@ if $DEV; then
     echo "Manual input required - paste below into file."
     echo "export USE_CCACHE=1"
     echo "ccache -M 10G > /dev/null 2>&1"
-    echo "export PATH=${PATH}:~/Documents/Development/bin:~/Documents/Development/adt-bundle-linux-x86_64/sdk/tools:~/Documents/Development/adt-bundle-linux-x86_64/sdk/platform-tools"
+    echo "export PATH=${PATH}:~/Documents/Development/bin:~/Documents/Development/adt-bundle-linux-x86_64/sdk/tools:~/Documents/Development/adt-bundle-linux-x86_64/sdk/platform-tools:~/Documents/Dropbox/Scripts"
     gedit ~/.bashrc
 fi
 
@@ -195,7 +195,8 @@ echo "Configure Dropbox"
 echo "Install CrossOver and Office 2007 SP3"
 echo "Run Netflix once for initial setup"
 
-
+echo "map Pause/Break or other to:"
+echo "amixer set Capture toggle"
 
 
 # qt creator
