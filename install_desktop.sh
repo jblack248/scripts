@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "Installer Script for Xubuntu 12.10"
+echo "Installer Script for Xubuntu 13.04"
 if [ "$(whoami)" == 'root' ]
-  then echo 'do not run this as root for user detection'
+  then echo 'Do not run this as root for user detection'
   exit 1;
 fi
 
@@ -87,6 +87,8 @@ sudo apt-get install -y libjpeg62:i386
 if $DEV; then
     echo "Install Android Development Tools and Dependencies"
     sudo apt-get install -y android-tools-adb android-tools-fastboot git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev lib32z1-dev pngcrush schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib g++-multilib schedtool libc6-dev-i386 ccache
+	echo "Link zconf.h to fix Android compile issues in 13.04"
+	ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
     # Java installed from Oracle PPA
     #sudo apt-get install -y openjdk-6-jre openjdk-6-jdk
     echo "Installing Development Tools"
@@ -112,7 +114,7 @@ rm –rf ~/.config/ubuntuone
 rm –rf ~/Ubuntu\ One
 sudo apt-get purge -y ubuntuone-client* python-ubuntuone-storage*
 echo "Remove Xubuntu Specific"
-sudo apt-get remove -y leafpad parole abiword gmusicbrowser
+sudo apt-get remove -y leafpad parole abiword gmusicbrowser mousepad
 sudo apt-get remove -y empathy unity-lens-shopping
 echo "Automatically Remove Packages"
 sudo apt-get autoremove
