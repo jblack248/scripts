@@ -38,7 +38,6 @@ sudo add-apt-repository -y ppa:kilian/f.lux
 sudo apt-add-repository -y ppa:ehoover/compholio
 if $OPTIMUS; then
     sudo add-apt-repository -y ppa:ubuntu-x-swat/x-updates
-    sudo add-apt-repository -y ppa:zhurikhin/primus
     sudo add-apt-repository -y ppa:bumblebee/stable
 fi
 if $DEV; then
@@ -68,7 +67,7 @@ sudo apt-get install -y fluxgui
 sudo apt-get install -y netflix-desktop
 if $OPTIMUS; then
     sudo apt-get install -y bumblebee bumblebee-nvidia linux-headers-generic
-    sudo apt-get install -y primus primus-lib:i386
+    sudo apt-get install -y primus primus-libs-ia32:i386
 fi
 if $DEV; then
     # requires manual input
@@ -199,6 +198,12 @@ echo "map Pause/Break or other to:"
 echo "amixer set Capture toggle"
 
 
+echo "Set Driver=nvidia in /etc/bumblebee/bumblebee.conf"
+
+echo "Optimus support for Steam Linux"
+echo "Add OPTIMUS_PREFIX=”primusrun” to /etc/environment"
+echo "Click the SET LAUNCH OPTIONS... button and specify $OPTIMUS_PREFIX %command% for the command line."
+
 # qt creator
 # File->Session Manager->Restore Last Session on Startup
 # 80 column line
@@ -225,3 +230,4 @@ echo "amixer set Capture toggle"
 
 #Linux automatic sound configuration
 #for HDMI / laptop audio switching
+
