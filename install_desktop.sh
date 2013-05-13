@@ -47,14 +47,6 @@ if $XFCE; then
     # PPA for Thunar and multimonitor support
     sudo add-apt-repository -y ppa:xubuntu-dev/xfce-4.12
 fi
-#if [ $VER == "12.10" ]; then
-#    echo "Install ownCloud repositories"
-#    sudo echo 'deb http://download.opensuse.org/repositories/isv:ownCloud:devel/xUbuntu_12.10/ /' >> /etc/apt/sources.list.d/owncloud-client.list
-#    wget http://download.opensuse.org/repositories/isv:ownCloud:devel/xUbuntu_12.10/Release.key
-#    sudo apt-key add - < Release.key
-#    sudo apt-get update
-#    sudo apt-get install owncloud-client
-#fi
 
 echo "Update Sources"
 sudo apt-get -y update
@@ -73,15 +65,9 @@ if $DEV; then
     # requires manual input
     sudo apt-get install -y oracle-java6-installer
 fi
-if $XFCE; then
-    # Quit and restart thunar to upgrade 1.4 to 1.6+
-    thunar -q
-    # make sure xfce4-display-settings -m is a shortcut (super-P, Fn-F8)
-fi
 
 echo "Install Applications"
 sudo apt-get install -y vlc gedit gthumb clementine nautilus-dropbox pidgin p7zip-full gparted gnome-disk-utility libreoffice-writer libreoffice-calc libreoffice-impress unetbootin chromium-browser sshfs grsync ppa-purge
-#sudo apt-get install -y okular digikam calligra
 echo "Install Required Library for Office 2007"
 sudo apt-get install -y libjpeg62:i386
 if $DEV; then
@@ -89,8 +75,6 @@ if $DEV; then
     sudo apt-get install -y android-tools-adb android-tools-fastboot git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev lib32z1-dev pngcrush schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib g++-multilib schedtool libc6-dev-i386 ccache
 	echo "Link zconf.h to fix Android compile issues in 13.04"
 	ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
-    # Java installed from Oracle PPA
-    #sudo apt-get install -y openjdk-6-jre openjdk-6-jdk
     echo "Installing Development Tools"
     sudo apt-get install -y meld gedit-plugins vim qtcreator git gitk gtkhash libgsl0-dev libgsl0ldbl
 fi
@@ -98,14 +82,6 @@ if $XFCE; then
     echo "Install Xubuntu Specific"
     sudo apt-get install -y xubuntu-restricted-extras
 fi
-
-echo "Install .deb's from Internet"
-#get / curl / whatever the hell
-# install googletalk plugin
-# install playonlinux
-# joe
-# install steam
-#http://media.steampowered.com/client/installer/steam.deb
 
 echo "Remove Ubuntu Specific"
 rm –rf ~/.local/share/ubuntuone
@@ -171,9 +147,9 @@ if $DEV; then
     sudo chmod a+r /etc/udev/rules.d/99-android.rules
     echo "Unplug all Android Devices"
     sudo service udev restart
-# run sudo adb kill-server and sudo adb start-server on startup?
-    adb kill-server
-    adb start-server
+	# could set adb server to restart on boot
+    sudo adb kill-server
+    sudo adb start-server
     
     echo "Customize .bashrc"
     # requires manual input
@@ -203,37 +179,7 @@ echo "Run Netflix once for initial setup"
 echo "map Pause/Break or other to:"
 echo "amixer set Capture toggle"
 
-
 echo "Set Driver=nvidia in /etc/bumblebee/bumblebee.conf"
-
 echo "Optimus support for Steam Linux"
 echo "Add OPTIMUS_PREFIX=”primusrun” to /etc/environment"
-echo "Click the SET LAUNCH OPTIONS... button and specify $OPTIMUS_PREFIX %command% for the command line."
-
-# qt creator
-# File->Session Manager->Restore Last Session on Startup
-# 80 column line
-
-#solarized color scheme for terminal, qt creator, gedit
-#git color scheme
-#copy dark/terminalrc into ~/.config/Terminal/
-
-#install dockbarx
-#swap file
-#printer
-
-#firefox
-#install xmarks, lastpass, adblockplus
-#setup to delete all history on close
-#hide menu bar, use small icons, move icons to the left side
-#preferences->privacy
-#use custom settings, keep until firefox closes, clear all at close
-#move adblock plus icon above lastpass icon
-#enable bookmarks toolbar
-
-#Xfconf -query
-#http://docs.xfce.org/xfce/xfce4-power-manager/preferences
-
-#Linux automatic sound configuration
-#for HDMI / laptop audio switching
-
+echo "SET LAUNCH OPTIONS - $OPTIMUS_PREFIX %command%"
