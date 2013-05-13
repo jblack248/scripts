@@ -1,16 +1,19 @@
 #!/bin/bash
-echo "Installer Script for Xubuntu 13.04"
 if [ "$(whoami)" == 'root' ]
-  then echo 'Do not run this as root for user detection'
-  exit 1;
+    then echo 'Do not run this as root for user detection'
+    exit 1;
 fi
 
-DEV=false
-OPTIMUS=false
-XFCE=false
-#OS=$(lsb_release -si)
-#ARCH=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
+ARCH=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
+OS=$(lsb_release -si)
 VER=$(lsb_release -sr)
+# testing if OS is an Ubuntu variant
+if [ ${OS} == 'Ubuntu' ]; then
+    echo "Install Script for ${OS} ${VER} ${ARCH}-bit"
+else
+    echo "Only Ubuntu-based distributions currently supported"
+    exit 1;
+fi
 
 check_DE() {
     # $1 = desktop environment boolean
@@ -22,15 +25,18 @@ check_DE() {
     fi
 }
 
-echo "Checking script conditionals"
+echo "Check script conditionals"
+DEV=false
 if [ "$(whoami)" == 'joe' ]; then
     # then define "DEV" for development install
     DEV=true
 fi
+OPTIMUS=false
 if [ "$(hostname)" == 'joe-laptop' ]; then
     # then define "laptop" for nvidia / optimus / bumblebee
     OPTIMUS=true
 fi
+XFCE=false
 check_DE XFCE "xfwm4"
 
 echo "Add PPA's and sources"
