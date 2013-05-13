@@ -80,7 +80,7 @@ if $XFCE; then
 fi
 
 echo "Install Applications"
-sudo apt-get install -y vlc gedit gthumb clementine nautilus-dropbox pidgin p7zip-full gparted gnome-disk-utility libreoffice-writer libreoffice-calc libreoffice-impress unetbootin chromium-browser sshfs grsync
+sudo apt-get install -y vlc gedit gthumb clementine nautilus-dropbox pidgin p7zip-full gparted gnome-disk-utility libreoffice-writer libreoffice-calc libreoffice-impress unetbootin chromium-browser sshfs grsync ppa-purge
 #sudo apt-get install -y okular digikam calligra
 echo "Install Required Library for Office 2007"
 sudo apt-get install -y libjpeg62:i386
@@ -92,7 +92,7 @@ if $DEV; then
     # Java installed from Oracle PPA
     #sudo apt-get install -y openjdk-6-jre openjdk-6-jdk
     echo "Installing Development Tools"
-    sudo apt-get install -y gedit-plugins vim qtcreator git gitk gtkhash libgsl0-dev libgsl0ldbl
+    sudo apt-get install -y meld gedit-plugins vim qtcreator git gitk gtkhash libgsl0-dev libgsl0ldbl
 fi
 if $XFCE; then
     echo "Install Xubuntu Specific"
@@ -175,12 +175,16 @@ if $DEV; then
     adb kill-server
     adb start-server
     
-    echo "Add paths to .bashrc"
+    echo "Customize .bashrc"
     # requires manual input
     echo "Manual input required - paste below into file."
     echo "export USE_CCACHE=1"
-    echo "ccache -M 10G > /dev/null 2>&1"
+    echo "ccache -M 20G > /dev/null 2>&1"
     echo "export PATH=${PATH}:~/Documents/Development/bin:~/Documents/Development/adt-bundle-linux-x86_64/sdk/tools:~/Documents/Development/adt-bundle-linux-x86_64/sdk/platform-tools:~/Documents/Dropbox/Scripts"
+	echo "DIR=$(pwd)"
+    echo "cd ~/Documents/Development/android"
+    echo ". build/envsetup.sh > /dev/null 2>&1"
+    echo "cd $DIR"
     gedit ~/.bashrc
 fi
 
