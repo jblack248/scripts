@@ -1,4 +1,10 @@
 #!/bin/bash
+# This script automates many of the steps taken on a fresh install of Xubuntu
+# for either myself or friends and family. My user and hostnames are currently
+# hard-coded to make the script simpler, but they can be easily changed. The
+# steps which aren't automated have instructions on what is needed. Currently
+# Ubuntu-based distributions are supported while Debian is untested.
+
 if [ "$(whoami)" == 'root' ]
     then echo 'Do not run this as root for user detection'
     exit 1;
